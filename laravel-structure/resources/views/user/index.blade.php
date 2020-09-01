@@ -6,13 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Travello template project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ asset('user/styles/bootstrap4/bootstrap.min.css') }}">
+<link href="{{ asset('user/plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/animate.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/styles/main_styles.css') }}">
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('user/styles/responsive.css') }}">
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 				<div class="col">
 					<div class="header_content d-flex flex-row align-items-center justify-content-start">
 						<div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
-							<div class="logo"><a href="index.html">Travello {{ asset('user/plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}</a></div>
+							<div class="logo"><a href="index.html">Travello</a></div>
 							<nav class="main_nav">
 								<ul class="d-flex flex-row align-items-start justify-content-start">
 									<li class="active"><a href="index.html">Home</a></li>
@@ -100,7 +100,7 @@
 
 				<!-- Slide -->
 				<div class="owl-item">
-					<div class="background_image" style="background-image:url(images/home_slider.jpg)"></div>
+					<div class="background_image" style="background-image:url({{ asset('user/images/home_slider.jpg') }})"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
@@ -196,7 +196,7 @@
 							<!-- Intro Item -->
 							<div class="col-lg-4 intro_col">
 								<div class="intro_item d-flex flex-row align-items-end justify-content-start">
-									<div class="intro_icon"><img src="images/beach.svg" alt=""></div>
+									<div class="intro_icon"><img src="{{ asset('user/images/beach.svg') }}" alt=""></div>
 									<div class="intro_content">
 										<div class="intro_title">Top Destinations</div>
 										<div class="intro_subtitle"><p>Nulla pretium tincidunt felis, nec.</p></div>
@@ -207,7 +207,7 @@
 							<!-- Intro Item -->
 							<div class="col-lg-4 intro_col">
 								<div class="intro_item d-flex flex-row align-items-end justify-content-start">
-									<div class="intro_icon"><img src="images/wallet.svg" alt=""></div>
+									<div class="intro_icon"><img src="{{ asset('user/images/wallet.svg') }}" alt=""></div>
 									<div class="intro_content">
 										<div class="intro_title">The Best Prices</div>
 										<div class="intro_subtitle"><p>Sollicitudin mauris lobortis in.</p></div>
@@ -218,7 +218,7 @@
 							<!-- Intro Item -->
 							<div class="col-lg-4 intro_col">
 								<div class="intro_item d-flex flex-row align-items-end justify-content-start">
-									<div class="intro_icon"><img src="images/suitcase.svg" alt=""></div>
+									<div class="intro_icon"><img src="{{ asset('user/images/suitcase.svg') }}" alt=""></div>
 									<div class="intro_content">
 										<div class="intro_title">Amazing Services</div>
 										<div class="intro_subtitle"><p>Nulla pretium tincidunt felis, nec.</p></div>
@@ -250,7 +250,7 @@
 						<!-- Destination -->
 						<div class="destination item">
 							<div class="destination_image">
-								<img src="images/destination_1.jpg" alt="">
+								<img src="{{ asset('user/images/destination_1.jpg') }}" alt="">
 								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
 							</div>
 							<div class="destination_content">
@@ -263,7 +263,7 @@
 						<!-- Destination -->
 						<div class="destination item">
 							<div class="destination_image">
-								<img src="images/destination_2.jpg" alt="">
+								<img src="{{ asset('user/images/destination_2.jpg') }}" alt="">
 							</div>
 							<div class="destination_content">
 								<div class="destination_title"><a href="destinations.html">Indonesia</a></div>
@@ -275,7 +275,7 @@
 						<!-- Destination -->
 						<div class="destination item">
 							<div class="destination_image">
-								<img src="images/destination_3.jpg" alt="">
+								<img src="{{ asset('user/images/destination_3.jpg') }}" alt="">
 							</div>
 							<div class="destination_content">
 								<div class="destination_title"><a href="destinations.html">San Francisco</a></div>
@@ -287,7 +287,7 @@
 						<!-- Destination -->
 						<div class="destination item">
 							<div class="destination_image">
-								<img src="images/destination_4.jpg" alt="">
+								<img src="{{ asset('user/images/destination_4.jpg') }}" alt="">
 							</div>
 							<div class="destination_content">
 								<div class="destination_title"><a href="destinations.html">Paris</a></div>
@@ -299,7 +299,7 @@
 						<!-- Destination -->
 						<div class="destination item">
 							<div class="destination_image">
-								<img src="images/destination_5.jpg" alt="">
+								<img src="{{ asset('user/images/destination_5.jpg') }}" alt="">
 							</div>
 							<div class="destination_content">
 								<div class="destination_title"><a href="destinations.html">Phi Phi Island</a></div>
@@ -311,7 +311,7 @@
 						<!-- Destination -->
 						<div class="destination item">
 							<div class="destination_image">
-								<img src="images/destination_6.jpg" alt="">
+								<img src="{{ asset('user/images/destination_6.jpg') }}" alt="">
 							</div>
 							<div class="destination_content">
 								<div class="destination_title"><a href="destinations.html">Mykonos</a></div>
@@ -329,7 +329,7 @@
 	<!-- Testimonials -->
 
 	<div class="testimonials" id="testimonials">
-		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/testimonials.jpg" data-speed="0.8"></div>
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{{ asset('user/images/testimonials.jpg') }}" data-speed="0.8"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col text-center">
@@ -401,7 +401,7 @@
 
 						<!-- News Post -->
 						<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-							<div class="news_post_image"><img src="images/news_1.jpg" alt=""></div>
+							<div class="news_post_image"><img src="{{ asset('user/images/news_1.jpg') }}" alt=""></div>
 							<div class="news_post_content">
 								<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
 									<div>02</div>
@@ -421,7 +421,7 @@
 
 						<!-- News Post -->
 						<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-							<div class="news_post_image"><img src="images/news_2.jpg" alt=""></div>
+							<div class="news_post_image"><img src="{{ asset('user/images/news_2.jpg') }}" alt=""></div>
 							<div class="news_post_content">
 								<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
 									<div>01</div>
@@ -441,7 +441,7 @@
 
 						<!-- News Post -->
 						<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-							<div class="news_post_image"><img src="images/news_3.jpg" alt=""></div>
+							<div class="news_post_image"><img src="{{ asset('user/images/news_3.jpg') }}" alt=""></div>
 							<div class="news_post_content">
 								<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
 									<div>29</div>
@@ -489,7 +489,7 @@
 	<!-- Footer -->
 
 	<footer class="footer">
-		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/footer_1.jpg" data-speed="0.8"></div>
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{{ asset('user/images/footer_1.jpg') }}" data-speed="0.8"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -517,7 +517,7 @@
 						<!-- Footer Contact Item -->
 						<div class="col-xl-4 footer_contact_col">
 							<div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
-								<div class="footer_contact_icon"><img src="images/sign.svg" alt=""></div>
+								<div class="footer_contact_icon"><img src="{{ asset('user/images/sign.svg') }}" alt=""></div>
 								<div class="footer_contact_title">give us a call</div>
 								<div class="footer_contact_list">
 									<ul>
@@ -531,7 +531,7 @@
 						<!-- Footer Contact Item -->
 						<div class="col-xl-4 footer_contact_col">
 							<div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
-								<div class="footer_contact_icon"><img src="images/trekking.svg" alt=""></div>
+								<div class="footer_contact_icon"><img src="{{ asset('user/images/trekking.svg') }}" alt=""></div>
 								<div class="footer_contact_title">come & drop by</div>
 								<div class="footer_contact_list">
 									<ul style="max-width:190px">
@@ -544,7 +544,7 @@
 						<!-- Footer Contact Item -->
 						<div class="col-xl-4 footer_contact_col">
 							<div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
-								<div class="footer_contact_icon"><img src="images/around.svg" alt=""></div>
+								<div class="footer_contact_icon"><img src="{{ asset('user/images/around.svg') }}" alt=""></div>
 								<div class="footer_contact_title">send us a message</div>
 								<div class="footer_contact_list">
 									<ul>
@@ -565,14 +565,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 </div>
 
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
-<script src="plugins/scrollTo/jquery.scrollTo.min.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="{{ asset('user/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('user/styles/bootstrap4/popper.js') }}"></script>
+<script src="{{ asset('user/styles/bootstrap4/bootstrap.min.js') }}"></script>
+<script src="{{ asset('user/plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
+<script src="{{ asset('user/plugins/Isotope/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('user/plugins/scrollTo/jquery.scrollTo.min.js') }}"></script>
+<script src="{{ asset('user/plugins/easing/easing.js') }}"></script>
+<script src="{{ asset('user/plugins/parallax-js-master/parallax.min.js') }}"></script>
+<script src="{{ asset('user/js/custom.js') }}"></script>
 </body>
 </html>

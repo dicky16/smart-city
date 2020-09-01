@@ -15,3 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'User\HomeController@index');
 Route::get('tes', 'User\HomeController@tes');
+
+Route::get('detail', 'User\HomeController@show');
+Route::get('about', 'User\HomeController@about');
+
+Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
+  Route::get('/home', 'HomeController@index')->name('home');
+});
+
+Route::get('/login-tes', 'User\HomeController@login');
+
+
+Auth::routes();
