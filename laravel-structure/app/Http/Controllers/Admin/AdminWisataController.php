@@ -21,9 +21,9 @@ class AdminWisataController
     public function getWisataDatatable()
     {
       $data = DB::table('wisata')
-      ->join('pengunjung as p', 'wisata.id', '=', 'p.id')
-      ->select('wisata.*', 'p.*')
-      ->orderBy('wisata.id', 'desc')
+      // ->join('pengunjung as p', 'wisata.id', '=', 'p.id')
+      // ->select('wisata.*', 'p.*')
+      // ->orderBy('wisata.id', 'desc')
       ->get();
       return Datatables::of($data)
       ->addIndexColumn()
@@ -63,7 +63,14 @@ class AdminWisataController
      */
     public function store(Request $request)
     {
-        //
+        $nama = $request->nama;
+        $deskripsi = $request->deskripsi;
+        $mobil = $request->mobil;
+        $motor = $request->motor;
+        $gambar = $request->file('gambar');
+        return response()->json([
+          'status' => 'ok'
+        ]);
     }
 
     /**

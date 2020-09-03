@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
       Route::get('/', 'Admin\AdminWisataController@index')->name('wisata');
       Route::get('data', 'Admin\AdminWisataController@getWisataDatatable');
       Route::get('datatable', 'Admin\AdminWisataController@loadDataTable');
+      Route::post('/', 'Admin\AdminWisataController@store');
     });
 
   });

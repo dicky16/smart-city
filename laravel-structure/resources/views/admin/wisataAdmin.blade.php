@@ -40,14 +40,21 @@
                     <input type="text" class="form-control" id="" name="nama">
 
                     <label for="alamat" class="mt-2">Deskripsi</label>
-                    <textarea type="tex" class="form-control" id="" name="alamat"> </textarea>
+                    <textarea type="tex" class="form-control" id="deskripsi-wisata" name=""> </textarea>
 
                     <label for="Telepon" class="mt-2">Kapasitas Parkir</label>
-                    <input type="text" class="form-control" id="" name="telepon">
+                    <div class="row">
+                      <div class="col">
+                        <input type="number" class="form-control" id="" name="mobil">
+                      </div>
+                      <div class="col">
+                        <input type="number" class="form-control" id="" name="motor">
+                      </div>
+                    </div>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="gambar" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
                     <div class="modal-footer">
