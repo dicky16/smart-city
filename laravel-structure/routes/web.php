@@ -20,6 +20,14 @@ Route::get('detail', 'User\HomeController@show');
 Route::get('about', 'User\HomeController@about');
 
 Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
+  Route::prefix('admin')->group(function () {
+    Route::get('/', 'Admin\AdminPageController@index');
+    //wisata
+    Route::prefix('wisata')->group(function () {
+      Route::get('/', 'Admin\AdminWisataController@index')->name('wisata');
+    });
+
+  });
   Route::get('/home', 'HomeController@index')->name('home');
 });
 
