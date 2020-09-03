@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use DataTables;
 
 class AdminWisataController
 {
@@ -14,6 +16,33 @@ class AdminWisataController
     public function index()
     {
         return view('admin/wisataAdmin');
+    }
+
+    public function getWisataDatatable()
+    {
+      $data = DB::table('wisata')
+      ->join('pengunjung as p', 'wisata.id', '=', 'p.id')
+      ->select('wisata.*', 'p.*')
+      ->orderBy('wisata.id', 'desc')
+      ->get();
+      return Datatables::of($data)
+      ->addIndexColumn()
+      ->addColumn('aksi', function($row){
+          $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-edit-wisata" style="font-size: 18pt; text-decoration: none;" class="mr-3">
+          <i class="fas fa-pen-square"></i>
+          </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-delete-wisata" style="font-size: 18pt; text-decoration: none; color:red;">
+          <i class="fas fa-trash"></i>
+          </a>';
+          return $btn;
+        })
+      ->rawColumns(['aksi'])
+      ->make(true);
+    }
+
+    public function loadDataTable()
+    {
+      return view('datatable/tableWisataAdmin');
     }
 
     /**

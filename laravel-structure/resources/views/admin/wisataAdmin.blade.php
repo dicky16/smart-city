@@ -13,10 +13,13 @@
             <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <div class="table-wisata"></div>
+                    <div id="table-wisata"></div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+@endsection
+@section('js')
+<script src="{{ asset('admin/js/wisata.js') }}"></script>
 @endsection

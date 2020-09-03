@@ -1,12 +1,11 @@
-<table class="table table-bordered" id="dataTableWisata" width="100%" cellspacing="0">
+<table class="table table-bordered" id="datatable-wisata" width="100%" cellspacing="0">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
+            <th>No.</th>
+            <th>Nama</th>
+            <th>Deskripsi</th>
+            <th>Kapasitas Parkir</th>
+            <th>Aksi</th>
         </tr>
     </thead>
 </table>

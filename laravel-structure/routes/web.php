@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
     //wisata
     Route::prefix('wisata')->group(function () {
       Route::get('/', 'Admin\AdminWisataController@index')->name('wisata');
+      Route::get('data', 'Admin\AdminWisataController@getWisataDatatable');
+      Route::get('datatable', 'Admin\AdminWisataController@loadDataTable');
     });
 
   });
