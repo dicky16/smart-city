@@ -18,6 +18,8 @@ class CreateWisataTable extends Migration
             $table->string('nama');
             $table->string('deskripsi');
             $table->string('kapasitas_parkir');
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

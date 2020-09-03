@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
             <li class="breadcrumb-item active">Tables</li>
         </ol>
-        <button type="button" name="button" class="btn btn-primary">+Tambah Wisata</button>
+        <button type="button" name="button" class="btn btn-primary"  data-toggle="modal" data-target="#wisataModal">+Tambah Wisata</button>
         <br><br>
         <div class="card mb-4">
             <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
@@ -19,6 +19,49 @@
         </div>
     </div>
 </main>
+
+<!-- Add wisata Modal-->
+<div class="modal fade" id="wisataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Wisata</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-wisata">
+                    @csrf
+
+                    <label for="namatenaga">Nama Wisata</label>
+                    <input type="text" class="form-control" id="" name="nama">
+
+                    <label for="alamat" class="mt-2">Deskripsi</label>
+                    <textarea type="tex" class="form-control" id="" name="alamat"> </textarea>
+
+                    <label for="Telepon" class="mt-2">Kapasitas Parkir</label>
+                    <input type="text" class="form-control" id="" name="telepon">
+
+                    <div class="form-group mt-3">
+                        <label for="file">Gambar</label>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection
 @section('js')
 <script src="{{ asset('admin/js/wisata.js') }}"></script>
