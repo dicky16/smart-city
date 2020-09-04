@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use DataTables, Auth;
+use DataTables, Auth, File;
 
 class AdminWisataController
 {
@@ -142,7 +142,57 @@ class AdminWisataController
      */
     public function update(Request $request, $id)
     {
-        //
+      $nama = $request->nama;
+      $deskripsi = $request->deskripsi;
+      $mobil = $request->mobil;
+      $motor = $request->motor;
+      $gambar = $request->file('gambar');
+
+      if($gambar != null) {
+      $fileEx = $gambar->getClientOriginalName();
+      $fileArr = explode(".", $fileEx);
+      $panjangArray = count($fileArr);
+      $indexTerakhir = $panjangArray - 1;
+      if($this->checkGambar($fileArr[$indexTerakhir])) {
+        $gambarName = time().'_'.$fileEx;
+        $gambarPath = "img/wisata";
+        $gambar->move($gambarPath, $gambarName, "public");
+
+        $gambarHapus = DB::table('wisata')->where('id', $id)->value('gambar');
+        File::delete($gambarHapus);
+
+        $wisata = DB::table('wisata')->where('id', $id)->update([
+          'nama' => $nama,
+          'deskripsi' => $deskripsi,
+          'kapasitas_parkir_mobil' => $mobil,
+          'kapasitas_parkir_motor' => $motor,
+          'gambar' => $gambarPath.'/'.$gambarName,
+        ]);
+
+        if($wisata) {
+          return response()->json([
+            'status' => 'ok'
+          ]);
+        }
+      } else {
+        return response()->json([
+          'status' => 'image_not_valid'
+        ]);
+      }
+    } else {
+      $wisata = DB::table('wisata')->where('id', $id)->update([
+        'nama' => $nama,
+        'deskripsi' => $deskripsi,
+        'kapasitas_parkir_mobil' => $mobil,
+        'kapasitas_parkir_motor' => $motor,
+      ]);
+
+      if($wisata) {
+        return response()->json([
+          'status' => 'ok'
+        ]);
+      }
+    }
     }
 
     /**
@@ -153,7 +203,12 @@ class AdminWisataController
      */
     public function destroy($id)
     {
-        
+        $gambarPath = DB::table('wisata')->where('id', $id)->value('gambar');
+        File::delete($gambarPath);
+        DB::table('wisata')->where('id', $id)->delete();
+        return response()->json([
+          'status' => 'deleted'
+        ]);
     }
 
     function checkGambar($file)

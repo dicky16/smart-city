@@ -115,6 +115,73 @@ $(document).ready(function() {
     });
   });
 
+  //update wisata
+  $('body').on('submit', '#form-edit-wisata', function(e) {
+    e.preventDefault();
+    var id = $('input[name=edit-id]').val();
+    var formData = new FormData();
+
+    var nama = $('input[name=nama-edit]').val();
+    var deskripsi = tinymce.get('deskripsi-wisata-edit').getContent();
+    var mobil = $('input[name=mobil-edit]').val();
+    var motor = $('input[name=motor-edit]').val();
+    var gambar = $('#gambar-edit')[0].files[0];
+
+    formData.append('nama', nama);
+    formData.append('deskripsi', deskripsi);
+    formData.append('mobil', mobil);
+    formData.append('motor', motor);
+    formData.append('gambar', gambar);
+    if(nama == "" || deskripsi == "" || mobil == "" || motor == "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Field tidak boleh kosong!',
+        timer: 1200,
+        showConfirmButton: false
+      })
+    } else {
+    $.ajax({
+      type: 'POST',
+      url: '/admin/wisata/update/' + id,
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(data) {
+        if(data.status == 'ok') {
+          Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Berhasil edit wisata!',
+            timer: 1200,
+            showConfirmButton: false
+          })
+
+          loadDataWisata();
+          $("#form-edit-wisata").trigger("reset");
+          $("#editWisataModal").modal("hide");
+        } else if(data.status = "image_not_valid") {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'File harus berupa gambar!',
+            timer: 1200,
+            showConfirmButton: false
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Terjadi Kesalahan!',
+            timer: 1200,
+            showConfirmButton: false
+          })
+        }
+      }
+  });
+}
+  });
+
   //hapus wisata
   $('body').on('click', '.btn-delete-wisata', function(e) {
     e.preventDefault();
@@ -132,7 +199,7 @@ $(document).ready(function() {
         if (result.value) {
             $.ajax({
                 type: 'GET',
-                url: 'admin/wisata/delete/' + id,
+                url: '/admin/wisata/delete/' + id,
                 contentType: false,
                 processData: false,
                 success: function(data) {
