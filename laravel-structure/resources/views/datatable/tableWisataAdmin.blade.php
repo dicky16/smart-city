@@ -4,7 +4,8 @@
             <th>No.</th>
             <th>Nama</th>
             <th>Deskripsi</th>
-            <th>Kapasitas Parkir</th>
+            <th>Kapasitas Parkir Mobil</th>
+            <th>Kapasitas Parkir Motor</th>
             <th>Aksi</th>
         </tr>
     </thead>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use DataTables;
+use DataTables, Auth;
 
 class AdminWisataController
 {
@@ -68,9 +68,42 @@ class AdminWisataController
         $mobil = $request->mobil;
         $motor = $request->motor;
         $gambar = $request->file('gambar');
+        $id = Auth::id();
+
+        if($gambar != null) {
+        $fileEx = $gambar->getClientOriginalName();
+        $fileArr = explode(".", $fileEx);
+        $panjangArray = count($fileArr);
+        $indexTerakhir = $panjangArray - 1;
+        if($this->checkGambar($fileArr[$indexTerakhir])) {
+          $gambarName = time().'_'.$fileEx;
+          $gambarPath = "img/wisata";
+          $gambar->move($gambarPath, $gambarName, "public");
+
+          $wisata = DB::table('wisata')->insert([
+            'nama' => $nama,
+            'deskripsi' => $deskripsi,
+            'kapasitas_parkir_mobil' => $mobil,
+            'kapasitas_parkir_motor' => $motor,
+            'gambar' => $gambarPath.'/'.$gambarName,
+            'id_user' => $id
+          ]);
+
+          if($wisata) {
+            return response()->json([
+              'status' => 'ok'
+            ]);
+          }
+        } else {
+          return response()->json([
+            'status' => 'image_not_valid'
+          ]);
+        }
+      } else {
         return response()->json([
-          'status' => 'ok'
+          'status' => 'empty_image'
         ]);
+      }
     }
 
     /**
@@ -92,7 +125,12 @@ class AdminWisataController
      */
     public function edit($id)
     {
-        //
+        $data = DB::table('wisata')
+        ->where('id', $id)
+        ->get();
+        return response()->json([
+          'data' => $data
+        ]);
     }
 
     /**
@@ -115,6 +153,16 @@ class AdminWisataController
      */
     public function destroy($id)
     {
-        //
+        
+    }
+
+    function checkGambar($file)
+    {
+      $file = strtolower($file);
+      $ex = array("png","jpg","jpeg","svg","gif");
+      if(in_array($file, $ex)) {
+        return true;
+      }
+      return false;
     }
 }

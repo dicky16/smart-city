@@ -83,6 +83,7 @@
         <script src="{{ asset('admin/assets/demo/datatables-demo.js') }}"></script>
         <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
         <script src="{{ asset('tinymcs.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         @yield('js')
     </body>
 </html>

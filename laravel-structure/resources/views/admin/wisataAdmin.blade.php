@@ -45,10 +45,10 @@
                     <label for="Telepon" class="mt-2">Kapasitas Parkir</label>
                     <div class="row">
                       <div class="col">
-                        <input type="number" class="form-control" id="" name="mobil">
+                        <input type="number" class="form-control" id="" name="mobil" placeholder="Mobil">
                       </div>
                       <div class="col">
-                        <input type="number" class="form-control" id="" name="motor">
+                        <input type="number" class="form-control" id="" name="motor" placeholder="Motor">
                       </div>
                     </div>
 
@@ -60,6 +60,61 @@
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit wisata Modal-->
+<div class="modal fade" id="editWisataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Wisata</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-wisata">
+                    @csrf
+
+                    <label for="namatenaga">Nama Wisata</label>
+                    <input type="text" class="form-control" id="" name="nama-edit">
+
+                    <label for="alamat" class="mt-2">Deskripsi</label>
+                    <textarea type="tex" class="form-control" id="deskripsi-wisata-edit" name=""> </textarea>
+
+                    <label for="Telepon" class="mt-2">Kapasitas Parkir</label>
+                    <div class="row">
+                      <div class="col">
+                        <input type="number" class="form-control" id="" name="mobil-edit" placeholder="Mobil">
+                      </div>
+                      <div class="col">
+                        <input type="number" class="form-control" id="" name="motor-edit" placeholder="Motor">
+                      </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="file">View Gambar</label>
+                        <br>
+                        <img id="image-edit-wisata" src="" style="width: 70%; height: 70%; border-radius: 10px;" alt="">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="file">Gambar</label>
+                        <input input id="gambar-edit" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                        <input type="hidden" name="edit-id" value="">
                     </div>
 
                 </form>
