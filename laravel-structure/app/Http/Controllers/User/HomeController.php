@@ -21,7 +21,7 @@ class HomeController
       return view('auth/loginUser');
     }
 
-    public function show($id)
+    public function show()
     {
       return view('user/detail');
     }
