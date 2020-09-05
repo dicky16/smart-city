@@ -31,7 +31,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -42,12 +42,11 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link" href="kuliner_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Kuliner</a>
+                            <a class="nav-link" href="{{ route('kuliner') }}"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Kuliner</a>
                             <a class="nav-link" href="{{ route('wisata') }}"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Wisata</a>
                             <a class="nav-link" href="akomodasi_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Akomodasi</a>
                             <a class="nav-link" href="artikel_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Artikel</a>
                             <a class="nav-link" href="galeri_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Galeri</a>
-                            <a class="nav-link" href="video_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Video</a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

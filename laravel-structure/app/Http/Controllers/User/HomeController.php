@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController
 {
     public function index()
     {
-      return view('user.index');
+      $data = DB::table('wisata')->paginate(6);
+      return view('user.index', ['wisata' => $data]);
     }
 
     public function tes()
