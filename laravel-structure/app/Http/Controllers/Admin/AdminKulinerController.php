@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables, Auth, File;
 
-class AdminWisataController
+class AdminKulinerController
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +15,20 @@ class AdminWisataController
      */
     public function index()
     {
-        return view('admin/wisataAdmin');
+        return view('admin/kulinerAdmin');
     }
 
-    public function getWisataDatatable()
+    public function getKulinerDatatable()
     {
-      $data = DB::table('wisata')
+      $data = DB::table('kuliner')
       ->get();
       return Datatables::of($data)
       ->addIndexColumn()
       ->addColumn('aksi', function($row){
-          $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-edit-wisata" style="font-size: 18pt; text-decoration: none;" class="mr-3">
+          $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-edit-kuliner" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-delete-wisata" style="font-size: 18pt; text-decoration: none; color:red;">
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-delete-kuliner" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
           return $btn;
@@ -39,7 +39,7 @@ class AdminWisataController
 
     public function loadDataTable()
     {
-      return view('datatable/tableWisataAdmin');
+      return view('datatable/tableKulinerAdmin');
     }
 
     /**
@@ -62,28 +62,26 @@ class AdminWisataController
     {
         $nama = $request->nama;
         $deskripsi = $request->deskripsi;
-        $mobil = $request->mobil;
-        $motor = $request->motor;
+        $lokasi = $request->lokasi;
+        $jamBuka = $request->jam;
         $gambar = $request->file('gambar');
-        $id = Auth::id();
 
-        if($gambar != null) {
         $fileEx = $gambar->getClientOriginalName();
         $fileArr = explode(".", $fileEx);
         $panjangArray = count($fileArr);
         $indexTerakhir = $panjangArray - 1;
         if($this->checkGambar($fileArr[$indexTerakhir])) {
           $gambarName = time().'_'.$fileEx;
-          $gambarPath = "img/wisata";
+          $gambarPath = "img/kuliner";
           $gambar->move($gambarPath, $gambarName, "public");
 
-          $wisata = DB::table('wisata')->insert([
+          $wisata = DB::table('kuliner')->insert([
             'nama' => $nama,
             'deskripsi' => $deskripsi,
-            'kapasitas_parkir_mobil' => $mobil,
-            'kapasitas_parkir_motor' => $motor,
+            'lokasi' => $lokasi,
+            'jam_buka' => $jamBuka,
             'gambar' => $gambarPath.'/'.$gambarName,
-            'id_user' => $id
+            'id_user' => Auth::id()
           ]);
 
           if($wisata) {
@@ -96,11 +94,6 @@ class AdminWisataController
             'status' => 'image_not_valid'
           ]);
         }
-      } else {
-        return response()->json([
-          'status' => 'empty_image'
-        ]);
-      }
     }
 
     /**
@@ -122,9 +115,7 @@ class AdminWisataController
      */
     public function edit($id)
     {
-        $data = DB::table('wisata')
-        ->where('id', $id)
-        ->get();
+        $data = DB::table('kuliner')->where('id', $id)->get();
         return response()->json([
           'data' => $data
         ]);
@@ -141,55 +132,52 @@ class AdminWisataController
     {
       $nama = $request->nama;
       $deskripsi = $request->deskripsi;
-      $mobil = $request->mobil;
-      $motor = $request->motor;
+      $lokasi = $request->lokasi;
+      $jamBuka = $request->jam;
       $gambar = $request->file('gambar');
-
       if($gambar != null) {
-      $fileEx = $gambar->getClientOriginalName();
-      $fileArr = explode(".", $fileEx);
-      $panjangArray = count($fileArr);
-      $indexTerakhir = $panjangArray - 1;
-      if($this->checkGambar($fileArr[$indexTerakhir])) {
-        $gambarName = time().'_'.$fileEx;
-        $gambarPath = "img/wisata";
-        $gambar->move($gambarPath, $gambarName, "public");
+        $fileEx = $gambar->getClientOriginalName();
+        $fileArr = explode(".", $fileEx);
+        $panjangArray = count($fileArr);
+        $indexTerakhir = $panjangArray - 1;
+        if($this->checkGambar($fileArr[$indexTerakhir])) {
+          $gambarName = time().'_'.$fileEx;
+          $gambarPath = "img/kuliner";
+          $gambarDelete = DB::table('kuliner')->where('id', $id)->value('gambar');
+          File::delete($gambarDelete);
+          $gambar->move($gambarPath, $gambarName, "public");
 
-        $gambarHapus = DB::table('wisata')->where('id', $id)->value('gambar');
-        File::delete($gambarHapus);
+          $wisata = DB::table('kuliner')->where('id', $id)->update([
+            'nama' => $nama,
+            'deskripsi' => $deskripsi,
+            'lokasi' => $lokasi,
+            'jam_buka' => $jamBuka,
+            'gambar' => $gambarPath.'/'.$gambarName,
+          ]);
 
-        $wisata = DB::table('wisata')->where('id', $id)->update([
-          'nama' => $nama,
-          'deskripsi' => $deskripsi,
-          'kapasitas_parkir_mobil' => $mobil,
-          'kapasitas_parkir_motor' => $motor,
-          'gambar' => $gambarPath.'/'.$gambarName,
-        ]);
-
-        if($wisata) {
+          if($wisata) {
+            return response()->json([
+              'status' => 'ok'
+            ]);
+          }
+        } else {
           return response()->json([
-            'status' => 'ok'
+            'status' => 'image_not_valid'
           ]);
         }
       } else {
-        return response()->json([
-          'status' => 'image_not_valid'
+        $wisata = DB::table('kuliner')->where('id', $id)->update([
+          'nama' => $nama,
+          'deskripsi' => $deskripsi,
+          'lokasi' => $lokasi,
+          'jam_buka' => $jamBuka,
         ]);
-      }
-    } else {
-      $wisata = DB::table('wisata')->where('id', $id)->update([
-        'nama' => $nama,
-        'deskripsi' => $deskripsi,
-        'kapasitas_parkir_mobil' => $mobil,
-        'kapasitas_parkir_motor' => $motor,
-      ]);
 
-      if($wisata) {
         return response()->json([
           'status' => 'ok'
         ]);
       }
-    }
+
     }
 
     /**
@@ -200,12 +188,12 @@ class AdminWisataController
      */
     public function destroy($id)
     {
-        $gambarPath = DB::table('wisata')->where('id', $id)->value('gambar');
-        File::delete($gambarPath);
-        DB::table('wisata')->where('id', $id)->delete();
-        return response()->json([
-          'status' => 'deleted'
-        ]);
+      $gambarPath = DB::table('kuliner')->where('id', $id)->value('gambar');
+      File::delete($gambarPath);
+      DB::table('kuliner')->where('id', $id)->delete();
+      return response()->json([
+        'status' => 'deleted'
+      ]);
     }
 
     function checkGambar($file)

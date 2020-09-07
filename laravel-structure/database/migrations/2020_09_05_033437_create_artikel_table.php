@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWisataTable extends Migration
+class CreateArtikelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateWisataTable extends Migration
      */
     public function up()
     {
-        Schema::create('wisata', function (Blueprint $table) {
+        Schema::create('artikel', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->mediumText('deskripsi');
-            $table->integer('kapasitas_parkir_mobil');
-            $table->integer('kapasitas_parkir_motor');
-            $table->string('jam_buka');
             $table->string('gambar');
             $table->bigInteger('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
@@ -34,6 +31,6 @@ class CreateWisataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wisata');
+        Schema::dropIfExists('artikel');
     }
 }
