@@ -56,6 +56,10 @@ Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
       Route::get('delete/{id}', 'Admin\AdminArtikelController@destroy');
     });
 
+    Route::prefix('akomodasi')->group(function () {
+      Route::get('', 'Admin\AdminAkomodasiController@index');
+    });
+
   });
   Route::get('/home', 'HomeController@index')->name('home');
 });
