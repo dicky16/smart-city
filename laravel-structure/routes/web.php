@@ -45,6 +45,16 @@ Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
       Route::post('update/{id}', 'Admin\AdminKulinerController@update');
       Route::get('delete/{id}', 'Admin\AdminKulinerController@destroy');
     });
+    //artikel
+    Route::prefix('artikel')->group(function () {
+      Route::get('/', 'Admin\AdminArtikelController@index')->name('artikel');
+      Route::get('data', 'Admin\AdminArtikelController@getArtikelDatatable');
+      Route::get('datatable', 'Admin\AdminArtikelController@loadDataTable');
+      Route::post('/', 'Admin\AdminArtikelController@store');
+      Route::get('edit/{id}', 'Admin\AdminArtikelController@edit');
+      Route::post('update/{id}', 'Admin\AdminArtikelController@update');
+      Route::get('delete/{id}', 'Admin\AdminArtikelController@destroy');
+    });
 
   });
   Route::get('/home', 'HomeController@index')->name('home');
