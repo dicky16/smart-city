@@ -57,7 +57,13 @@ Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
     });
 
     Route::prefix('akomodasi')->group(function () {
-      Route::get('', 'Admin\AdminAkomodasiController@index');
+      Route::get('', 'Admin\AdminAkomodasiController@index')->name('akomodasi');
+      Route::get('data', 'Admin\AdminAkomodasiController@getAkomodasiDatatable');
+      Route::get('datatable', 'Admin\AdminAkomodasiController@loadDataTable');
+      Route::post('/', 'Admin\AdminAkomodasiController@store');
+      Route::get('edit/{id}', 'Admin\AdminAkomodasiController@edit');
+      Route::post('update/{id}', 'Admin\AdminAkomodasiController@update');
+      Route::get('delete/{id}', 'Admin\AdminAkomodasiController@destroy');
     });
 
   });
