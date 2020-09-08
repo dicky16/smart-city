@@ -45,7 +45,7 @@
                             <a class="nav-link" href="{{ route('kuliner') }}"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Kuliner</a>
                             <a class="nav-link" href="{{ route('wisata') }}"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Wisata</a>
                             <a class="nav-link" href="akomodasi_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Akomodasi</a>
-                            <a class="nav-link" href="artikel_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Artikel</a>
+                            <a class="nav-link" href="{{ route('artikel') }}"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Artikel</a>
                             <a class="nav-link" href="galeri_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Galeri</a>
                         </div>
                     </div>

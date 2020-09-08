@@ -4,8 +4,6 @@
             <th>No.</th>
             <th>Nama</th>
             <th>Deskripsi</th>
-            <th>Lokasi</th>
-            <th>Jam Buka</th>
             <th>Gambar</th>
             <th>Aksi</th>
         </tr>
