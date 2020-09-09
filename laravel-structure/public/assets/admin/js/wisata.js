@@ -4,6 +4,7 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
     loadDataWisata();
     function loadDataWisata() {
             $('#table-wisata').load('/admin/wisata/datatable', function() {
@@ -21,6 +22,16 @@ $(document).ready(function() {
                         {data: 'deskripsi',name: 'deskripsi'},
                         {data: 'kapasitas_parkir_mobil',name: 'kapasitas_parkir_mobil'},
                         {data: 'kapasitas_parkir_motor',name: 'kapasitas_parkir_motor'},
+                        {data: 'jam_buka',name: 'jam_buka'},
+                        {data: 'lokasi',name: 'lokasi'},
+                        {
+                            data: 'gambar',
+                            name: 'gambar',
+                            "render": function(data, type, row) {
+                                return '<img src=" ' + host + '/'+ data + ' " style="height:100px;width:100px;"/>';
+                            },
+                            searchable: false
+                        },
                         {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
                     ]
                 });
@@ -36,14 +47,23 @@ $(document).ready(function() {
       var deskripsi = tinymce.get('deskripsi-wisata').getContent();
       var mobil = $('input[name=mobil]').val();
       var motor = $('input[name=motor]').val();
+      var buka = $('input[name=jam-buka]').val();
+      var tutup = $('input[name=jam-tutup]').val();
+      var lat = $('input[name=lat]').val();
+      var lon = $('input[name=lon]').val();
       var gambar = $('#gambar')[0].files[0];
+      var jam_buka_tutup = buka + '-' + tutup;
+      var lokasi = lat + ',' + lon;
 
       formData.append('nama', nama);
       formData.append('deskripsi', deskripsi);
       formData.append('mobil', mobil);
       formData.append('motor', motor);
+      formData.append('jam', jam_buka_tutup);
+      formData.append('lokasi', lokasi);
       formData.append('gambar', gambar);
-      if(nama == "" || deskripsi == "" || mobil == "" || motor == "") {
+      if(nama == "" || deskripsi == "" || mobil == "" || motor == "" || buka == "" ||
+      tutup == "" || lat == "" || lon == "") {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -67,7 +87,8 @@ $(document).ready(function() {
               timer: 1200,
               showConfirmButton: false
             })
-
+            var id = data.id;
+            addWisata(id, 0, 0, 0);
             loadDataWisata();
             $("#form-tambah-wisata").trigger("reset");
             $("#wisataModal").modal("hide");
@@ -93,6 +114,19 @@ $(document).ready(function() {
   }
   });
 
+  function addWisata(id, pengunjung, mobil_masuk, mobil_keluar)
+    {
+    var wisataRef = firebase.database();
+    var wisata = wisataRef.ref("wisata/" + id);
+    wisata.set({
+    id : parseInt(id),
+    jumlah_pengunjung : parseInt(pengunjung),
+    mobil_masuk : parseInt(mobil_masuk),
+    mobil_keluar : parseInt(mobil_keluar)
+    });
+
+    }
+
   //edit wisata
   $('body').on('click', '.btn-edit-wisata', function(e) {
     e.preventDefault();
@@ -106,10 +140,19 @@ $(document).ready(function() {
         processData: false,
         success: function(data) {
             $('#editWisataModal').modal('show');
+            var lokasi = data.data[0].lokasi;
+            var jam_buka = data.data[0].jam_buka;
+            var lokasiArr = lokasi.split(',');
+            var jamArr = jam_buka.split('-');
             tinymce.get('deskripsi-wisata-edit').setContent(data.data[0].deskripsi);
             $('input[name=nama-edit]').val(data.data[0].nama);
             $('input[name=mobil-edit]').val(data.data[0].kapasitas_parkir_mobil);
             $('input[name=motor-edit]').val(data.data[0].kapasitas_parkir_motor);
+            $('input[name=mobil-edit]').val(data.data[0].kapasitas_parkir_mobil);
+            $('input[name=lat-edit]').val(lokasiArr[0]);
+            $('input[name=lon-edit]').val(lokasiArr[1]);
+            $('input[name=jam-buka-edit]').val(jamArr[0]);
+            $('input[name=jam-tutup-edit]').val(jamArr[1]);
             $('#image-edit-wisata').attr('src', host + '/' + data.data[0].gambar);
         }
     });
@@ -125,14 +168,23 @@ $(document).ready(function() {
     var deskripsi = tinymce.get('deskripsi-wisata-edit').getContent();
     var mobil = $('input[name=mobil-edit]').val();
     var motor = $('input[name=motor-edit]').val();
+    var buka = $('input[name=jam-buka-edit]').val();
+    var tutup = $('input[name=jam-tutup-edit]').val();
+    var lat = $('input[name=lat-edit]').val();
+    var lon = $('input[name=lon-edit]').val();
     var gambar = $('#gambar-edit')[0].files[0];
+    var jam_buka_tutup = buka + '-' + tutup;
+    var lokasi = lat + ',' + lon;
 
     formData.append('nama', nama);
     formData.append('deskripsi', deskripsi);
     formData.append('mobil', mobil);
     formData.append('motor', motor);
+    formData.append('jam', jam_buka_tutup);
+    formData.append('lokasi', lokasi);
     formData.append('gambar', gambar);
-    if(nama == "" || deskripsi == "" || mobil == "" || motor == "") {
+    if(nama == "" || deskripsi == "" || mobil == "" || motor == "" || buka == "" ||
+    tutup == "" || lat == "" || lon == "") {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -208,6 +260,7 @@ $(document).ready(function() {
                             'Deleted!',
                             'Your file has been deleted.',
                             )
+                            deleteWisata(id);
                             loadDataWisata();
                         }
                     }
@@ -215,5 +268,13 @@ $(document).ready(function() {
             }
         })
     });
+
+    function deleteWisata(id)
+      {
+      var wisataRef = firebase.database();
+      var wisata = wisataRef.ref("wisata/" + id);
+      wisata.remove();
+
+      }
 
 });

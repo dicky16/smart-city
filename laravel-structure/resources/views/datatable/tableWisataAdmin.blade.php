@@ -6,6 +6,9 @@
             <th>Deskripsi</th>
             <th>Kapasitas Parkir Mobil</th>
             <th>Kapasitas Parkir Motor</th>
+            <th>Jam Buka</th>
+            <th>Lokasi</th>
+            <th>Gambar</th>
             <th>Aksi</th>
         </tr>
     </thead>

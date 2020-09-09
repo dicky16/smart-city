@@ -20,6 +20,7 @@ class CreateWisataTable extends Migration
             $table->integer('kapasitas_parkir_mobil');
             $table->integer('kapasitas_parkir_motor');
             $table->string('jam_buka');
+            $table->string('lokasi');
             $table->string('gambar');
             $table->bigInteger('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');

@@ -65,6 +65,8 @@ class AdminWisataController
         $mobil = $request->mobil;
         $motor = $request->motor;
         $gambar = $request->file('gambar');
+        $jam = $request->jam;
+        $lokasi = $request->lokasi;
         $id = Auth::id();
 
         if($gambar != null) {
@@ -83,12 +85,16 @@ class AdminWisataController
             'kapasitas_parkir_mobil' => $mobil,
             'kapasitas_parkir_motor' => $motor,
             'gambar' => $gambarPath.'/'.$gambarName,
+            'jam_buka' => $jam,
+            'lokasi' => $lokasi,
             'id_user' => $id
           ]);
 
           if($wisata) {
+            $kode = DB::table('wisata')->where('gambar', $gambarPath.'/'.$gambarName)->value('id');
             return response()->json([
-              'status' => 'ok'
+              'status' => 'ok',
+              'id' => $kode
             ]);
           }
         } else {
@@ -143,6 +149,8 @@ class AdminWisataController
       $deskripsi = $request->deskripsi;
       $mobil = $request->mobil;
       $motor = $request->motor;
+      $jam = $request->jam;
+      $lokasi = $request->lokasi;
       $gambar = $request->file('gambar');
 
       if($gambar != null) {
@@ -164,6 +172,8 @@ class AdminWisataController
           'kapasitas_parkir_mobil' => $mobil,
           'kapasitas_parkir_motor' => $motor,
           'gambar' => $gambarPath.'/'.$gambarName,
+          'jam_buka' => $jam,
+          'lokasi' => $lokasi,
         ]);
 
         if($wisata) {
@@ -182,6 +192,8 @@ class AdminWisataController
         'deskripsi' => $deskripsi,
         'kapasitas_parkir_mobil' => $mobil,
         'kapasitas_parkir_motor' => $motor,
+        'jam_buka' => $jam,
+        'lokasi' => $lokasi,
       ]);
 
       if($wisata) {
@@ -217,4 +229,5 @@ class AdminWisataController
       }
       return false;
     }
+
 }
