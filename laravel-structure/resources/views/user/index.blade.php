@@ -70,7 +70,7 @@
 							<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
 						</div>
 						<div class="destination_content">
-							<div class="destination_title"><a href="destinations.html">{{ $w->nama}}</a></div>
+							<div class="destination_title"><a href="{{ url('wisata/detail/') }}/{{ $w->id }}">{{ $w->nama}}</a></div>
 							<div class="destination_subtitle" id="deskripsi">
 								..
 							</div>

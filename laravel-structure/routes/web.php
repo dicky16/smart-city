@@ -17,11 +17,15 @@ Route::get('/', 'User\HomeController@index');
 Route::get('tes', 'User\HomeController@tes');
 
 Route::get('detail', 'User\HomeController@show');
+Route::prefix('wisata')->group(function () {
+  Route::get('detail/{id}', 'User\UserWisataController@index');
+  // Route::get('detail-get/{id}', 'User\UserWisataController@show');
+});
 Route::get('about', 'User\HomeController@about');
 
 //logout
 Route::get('logout', 'Admin\AdminPageController@logout')->name('logout');
-
+//Route admin
 Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
   Route::prefix('admin')->group(function () {
     Route::get('/', 'Admin\AdminPageController@index');

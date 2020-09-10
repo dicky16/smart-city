@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/styles/bootstrap4/bootstrap.min.css') }}">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="{{ asset('user/plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/animate.css') }}">
@@ -24,6 +24,7 @@
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-database.js"></script>
 
 <script>
   // Your web app's Firebase configuration
@@ -143,7 +144,7 @@
 
 				<!-- Slide -->
 				<div class="owl-item">
-					<div class="background_image" style="background-image:url(images/home_slider.jpg)"></div>
+					<div class="background_image" style="background-image:url({{ asset('user/images/home_slider.jpg') }})"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
@@ -159,7 +160,7 @@
 
 				<!-- Slide -->
 				<div class="owl-item">
-					<div class="background_image" style="background-image:url(images/home_slider.jpg)"></div>
+					<div class="background_image" style="background-image:url({{ asset('user/images/home_slider.jpg') }})"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
