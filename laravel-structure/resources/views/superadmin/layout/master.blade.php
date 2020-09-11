@@ -7,7 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Dashboard - SB Admin</title>
+        <title>Dashboard - Super Admin</title>
         <link href="{{ asset('admin/css/styles.css') }}" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="{{ url('admin/profil') }}/{{  auth()->user()->id  }}">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                        <a class="dropdown-item" href="">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                     </div>
@@ -43,11 +43,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link" href="{{ route('kuliner') }}"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Kuliner</a>
-                            <a class="nav-link" href="{{ route('wisata') }}"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Wisata</a>
-                            <a class="nav-link" href="{{ route('akomodasi') }}"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Akomodasi</a>
-                            <a class="nav-link" href="{{ route('artikel') }}"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Artikel</a>
-                            <a class="nav-link" href="galeri_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Galeri</a>
+                            <a class="nav-link" href="{{ route('admin') }}"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Admin</a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
