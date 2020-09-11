@@ -25,10 +25,24 @@ Route::get('about', 'User\HomeController@about');
 
 //logout
 Route::get('logout', 'Admin\AdminPageController@logout')->name('logout');
+//route superadmin
+Route::group(['middleware' => ['auth', 'checkRole:2']],function() {
+  Route::prefix('superadmin')->group(function () {
+    Route::get('/', 'Superadmin\AdminController@index')->name('admin');
+    Route::get('data', 'Superadmin\AdminController@getAdmin');
+    Route::get('datatable', 'Superadmin\AdminController@loadDataTable');
+    Route::post('/', 'Superadmin\AdminController@store');
+    Route::get('edit/{id}', 'Superadmin\AdminController@edit');
+    Route::post('update/{id}', 'Superadmin\AdminController@update');
+    Route::get('delete/{id}', 'Superadmin\AdminController@destroy');
+  });
+});
 //Route admin
 Route::group(['middleware' => ['auth', 'checkRole:1']],function() {
   Route::prefix('admin')->group(function () {
     Route::get('/', 'Admin\AdminPageController@index');
+    Route::get('profil/{id}', 'Admin\AdminProfilController@index');
+    Route::post('profil/{id}', 'Admin\AdminProfilController@update');
     //wisata
     Route::prefix('wisata')->group(function () {
       Route::get('/', 'Admin\AdminWisataController@index')->name('wisata');
