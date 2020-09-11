@@ -301,6 +301,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{ asset('user/plugins/easing/easing.js') }}"></script>
 <script src="{{ asset('user/plugins/parallax-js-master/parallax.min.js') }}"></script>
 <script src="{{ asset('user/js/custom.js') }}"></script>
+<script
+      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+      data-auto-a11y="true"
+    ></script>
 @yield('js')
 </body>
 </html>

@@ -78,7 +78,8 @@ class AdminArtikelController
           'nama' => $nama,
           'deskripsi' => $deskripsi,
           'gambar' => $gambarPath.'/'.$gambarName,
-          'id_user' => $id
+          'id_user' => $id,
+          'created_at' =>  \Carbon\Carbon::now(), # new \Datetime()
         ]);
 
         if($wisata) {
@@ -149,6 +150,7 @@ class AdminArtikelController
           'nama' => $nama,
           'deskripsi' => $deskripsi,
           'gambar' => $gambarPath.'/'.$gambarName,
+          'updated_at' => \Carbon\Carbon::now(),  # new \Datetime()
         ]);
 
         if($wisata) {
@@ -165,6 +167,7 @@ class AdminArtikelController
       $wisata = DB::table('artikel')->where('id', $id)->update([
         'nama' => $nama,
         'deskripsi' => $deskripsi,
+        'updated_at' => \Carbon\Carbon::now(),  # new \Datetime()
       ]);
 
       if($wisata) {
