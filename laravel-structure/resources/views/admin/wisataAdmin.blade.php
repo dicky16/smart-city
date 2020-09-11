@@ -1,4 +1,32 @@
 @extends('admin/layout/master')
+@section('firebase')
+<!-- firebase -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+   https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-database.js"></script>
+
+<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyBwBRQHnE1ruI8I6U1rUJTY83HHfdWPumI",
+  authDomain: "smart-city-c346a.firebaseapp.com",
+  databaseURL: "https://smart-city-c346a.firebaseio.com",
+  projectId: "smart-city-c346a",
+  storageBucket: "smart-city-c346a.appspot.com",
+  messagingSenderId: "10824827554",
+  appId: "1:10824827554:web:6d556148dd2d5c627e8dfb",
+  measurementId: "G-ENKBQX9FZ8"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+</script>
+<!-- end firebase -->
+@endsection
 @section('content')
 <main>
     <div class="container-fluid">
@@ -52,6 +80,27 @@
                       </div>
                     </div>
 
+                    <label for="lokasi" class="mt-2">Jam Buka</label>
+                    <div class="row">
+                      <div class="col">
+                        <input type="time" class="form-control" id="" name="jam-buka" placeholder="Buka">
+                      </div>
+                      <div class="col">
+                        <input type="time" class="form-control" id="" name="jam-tutup" placeholder="Tutup">
+                      </div>
+                    </div>
+
+                    <label for="lokasi" class="mt-2">Lokasi</label>
+                    <p>Masukkan latitude dan longitude tempat kuliner Anda (bisa dilihat di google maps)</p>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" class="form-control" id="" name="lat" placeholder="Latitude">
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="" name="lon" placeholder="Longitude">
+                      </div>
+                    </div>
+
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
                         <input input id="gambar" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
@@ -101,6 +150,28 @@
                         <input type="number" class="form-control" id="" name="motor-edit" placeholder="Motor">
                       </div>
                     </div>
+
+                    <label for="lokasi" class="mt-2">Jam Buka</label>
+                    <div class="row">
+                      <div class="col">
+                        <input type="time" class="form-control" id="" name="jam-buka-edit" placeholder="Buka">
+                      </div>
+                      <div class="col">
+                        <input type="time" class="form-control" id="" name="jam-tutup-edit" placeholder="Tutup">
+                      </div>
+                    </div>
+
+                    <label for="lokasi" class="mt-2">Lokasi</label>
+                    <p>Masukkan latitude dan longitude tempat kuliner Anda (bisa dilihat di google maps)</p>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" class="form-control" id="" name="lat-edit" placeholder="Latitude">
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="" name="lon-edit" placeholder="Longitude">
+                      </div>
+                    </div>
+
                     <div class="form-group mt-3">
                         <label for="file">View Gambar</label>
                         <br>

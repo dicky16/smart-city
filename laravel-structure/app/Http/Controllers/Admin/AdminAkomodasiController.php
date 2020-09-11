@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use DataTables, Auth, File;
 
 class AdminAkomodasiController
@@ -19,21 +20,26 @@ class AdminAkomodasiController
 
     public function getAkomodasiDatatable()
     {
-      $data = DB::table('wisata')
+      $data = DB::table('akomodasi')
       ->get();
       return Datatables::of($data)
       ->addIndexColumn()
       ->addColumn('aksi', function($row){
-          $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-edit-wisata" style="font-size: 18pt; text-decoration: none;" class="mr-3">
+          $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-edit-akomodasi" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-delete-wisata" style="font-size: 18pt; text-decoration: none; color:red;">
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-delete-akomodasi" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])
       ->make(true);
+    }
+
+    public function loadDataTable()
+    {
+      return view('datatable/tableAkomodasi');
     }
 
     /**
@@ -54,38 +60,40 @@ class AdminAkomodasiController
      */
     public function store(Request $request)
     {
-        $nama = $request->nama;
-        $deskripsi = $request->deskripsi;
-        $lokasi = $request->lokasi;
-        $gambar = $request->file('gambar');
+      $nama = $request->nama;
+      $deskripsi = $request->deskripsi;
+      $lokasi = $request->lokasi;
+      $gambar = $request->file('gambar');
+      $id = Auth::id();
 
-        $fileEx = $gambar->getClientOriginalName();
-        $fileArr = explode(".", $fileEx);
-        $panjangArray = count($fileArr);
-        $indexTerakhir = $panjangArray - 1;
-        if($this->checkGambar($fileArr[$indexTerakhir])) {
-          $gambarName = time().'_'.$fileEx;
-          $gambarPath = "img/akomodasi";
-          $gambar->move($gambarPath, $gambarName, "public");
+      $fileEx = $gambar->getClientOriginalName();
+      $fileArr = explode(".", $fileEx);
+      $panjangArray = count($fileArr);
+      $indexTerakhir = $panjangArray - 1;
+      if($this->checkGambar($fileArr[$indexTerakhir])) {
+        $gambarName = time().'_'.$fileEx;
+        $gambarPath = "img/akomodasi";
+        $gambar->move($gambarPath, $gambarName, "public");
 
-          $wisata = DB::table('akomodasi')->insert([
-            'nama' => $nama,
-            'deskripsi' => $deskripsi,
-            'lokasi' => $lokasi,
-            'gambar' => $gambarPath.'/'.$gambarName,
-            'id_user' => Auth::id()
-          ]);
+        $akomodasi = DB::table('akomodasi')->insert([
+          'nama' => $nama,
+          'deskripsi' => $deskripsi,
+          'lokasi' => $lokasi,
+          'gambar' => $gambarPath.'/'.$gambarName,
+          'id_user' => $id,
+          'created_at' =>  \Carbon\Carbon::now(),
+        ]);
 
-          if($wisata) {
-            return response()->json([
-              'status' => 'ok'
-            ]);
-          }
-        } else {
+        if($akomodasi) {
           return response()->json([
-            'status' => 'image_not_valid'
+            'status' => 'ok',
           ]);
         }
+      } else {
+        return response()->json([
+          'status' => 'image_not_valid'
+        ]);
+      }
     }
 
     /**
@@ -122,50 +130,57 @@ class AdminAkomodasiController
      */
     public function update(Request $request, $id)
     {
-        $nama = $request->nama;
+      $nama = $request->nama;
       $deskripsi = $request->deskripsi;
       $lokasi = $request->lokasi;
       $gambar = $request->file('gambar');
+      $id = Auth::id();
       if($gambar != null) {
-        $fileEx = $gambar->getClientOriginalName();
-        $fileArr = explode(".", $fileEx);
-        $panjangArray = count($fileArr);
-        $indexTerakhir = $panjangArray - 1;
-        if($this->checkGambar($fileArr[$indexTerakhir])) {
-          $gambarName = time().'_'.$fileEx;
-          $gambarPath = "img/akomodasi";
-          $gambarDelete = DB::table('akomodasi')->where('id', $id)->value('gambar');
-          File::delete($gambarDelete);
-          $gambar->move($gambarPath, $gambarName, "public");
+      $fileEx = $gambar->getClientOriginalName();
+      $fileArr = explode(".", $fileEx);
+      $panjangArray = count($fileArr);
+      $indexTerakhir = $panjangArray - 1;
+      if($this->checkGambar($fileArr[$indexTerakhir])) {
+        $gambarName = time().'_'.$fileEx;
+        $gambarPath = "img/akomodasi";
+        $gambar->move($gambarPath, $gambarName, "public");
+        $gambarHapus = DB::table('akomodasi')->where('id', $id)->value('gambar');
+        File::delete($gambarHapus);
 
-          $wisata = DB::table('akomodasi')->where('id', $id)->update([
-            'nama' => $nama,
-            'deskripsi' => $deskripsi,
-            'lokasi' => $lokasi,
-            'gambar' => $gambarPath.'/'.$gambarName,
-          ]);
-
-          if($wisata) {
-            return response()->json([
-              'status' => 'ok'
-            ]);
-          }
-        } else {
-          return response()->json([
-            'status' => 'image_not_valid'
-          ]);
-        }
-      } else {
-        $wisata = DB::table('akomodasi')->where('id', $id)->update([
+        $akomodasi = DB::table('akomodasi')->where('id', $id)->update([
           'nama' => $nama,
           'deskripsi' => $deskripsi,
           'lokasi' => $lokasi,
+          'gambar' => $gambarPath.'/'.$gambarName,
+          'id_user' => $id,
+          'updated_at' => \Carbon\Carbon::now(),
         ]);
 
+        if($akomodasi) {
+          return response()->json([
+            'status' => 'ok',
+          ]);
+        }
+      } else {
+        return response()->json([
+          'status' => 'image_not_valid'
+        ]);
+      }
+    } else {
+      $akomodasi = DB::table('akomodasi')->where('id', $id)->update([
+        'nama' => $nama,
+        'deskripsi' => $deskripsi,
+        'lokasi' => $lokasi,
+        'id_user' => $id,
+        'updated_at' => \Carbon\Carbon::now(),
+      ]);
+      if($akomodasi) {
         return response()->json([
           'status' => 'ok'
         ]);
       }
+    }
+
     }
 
     /**
@@ -176,12 +191,10 @@ class AdminAkomodasiController
      */
     public function destroy($id)
     {
-        $gambarPath = DB::table('akomodasi')->where('id', $id)->value('gambar');
-      File::delete($gambarPath);
-      DB::table('akomodasi')->where('id', $id)->delete();
-      return response()->json([
-        'status' => 'deleted'
-      ]);
+        DB::table('akomodasi')->where('id', $id)->delete();
+        return response()->json([
+          'status' => 'deleted'
+        ]);
     }
 
     function checkGambar($file)

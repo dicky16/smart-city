@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/styles/bootstrap4/bootstrap.min.css') }}">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="{{ asset('user/plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user/plugins/OwlCarousel2-2.2.1/animate.css') }}">
@@ -17,6 +17,32 @@
 @yield('css')
 </head>
 <body>
+	<!-- firebase -->
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBwBRQHnE1ruI8I6U1rUJTY83HHfdWPumI",
+    authDomain: "smart-city-c346a.firebaseapp.com",
+    databaseURL: "https://smart-city-c346a.firebaseio.com",
+    projectId: "smart-city-c346a",
+    storageBucket: "smart-city-c346a.appspot.com",
+    messagingSenderId: "10824827554",
+    appId: "1:10824827554:web:6d556148dd2d5c627e8dfb",
+    measurementId: "G-ENKBQX9FZ8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<!-- end firebase -->
 
 <div class="super_container">
 
@@ -118,7 +144,7 @@
 
 				<!-- Slide -->
 				<div class="owl-item">
-					<div class="background_image" style="background-image:url(images/home_slider.jpg)"></div>
+					<div class="background_image" style="background-image:url({{ asset('user/images/home_slider.jpg') }})"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
@@ -134,7 +160,7 @@
 
 				<!-- Slide -->
 				<div class="owl-item">
-					<div class="background_image" style="background-image:url(images/home_slider.jpg)"></div>
+					<div class="background_image" style="background-image:url({{ asset('user/images/home_slider.jpg') }})"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
@@ -275,6 +301,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{ asset('user/plugins/easing/easing.js') }}"></script>
 <script src="{{ asset('user/plugins/parallax-js-master/parallax.min.js') }}"></script>
 <script src="{{ asset('user/js/custom.js') }}"></script>
+<script
+      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+      data-auto-a11y="true"
+    ></script>
 @yield('js')
 </body>
 </html>

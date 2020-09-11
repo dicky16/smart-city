@@ -7,14 +7,16 @@
 @endsection
 @section('content')
 <!-- <div class="milestones"> -->
+<br>
   <div class="container">
     <div class="row mb-3 mt-3">
       <div class="col-3">
         <div class="card" style="width: 18rem;">
-          <img src="{{ asset('user/images/mountain.svg') }}" class="card-img-top" alt="...">
+          <img src="{{ url($data[0]->gambar) }}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Jatim Park 1</h5>
-            <p class="card-text">Jatim Park 1 adalah sebuah theme park dengan berbagai wahana permainan yang seru dan asyik banget, sobat tiket. Jatim Park 1 adalah theme park yang memadukan konsep edukasi serta hiburan.</p>
+            <h5 class="card-title">{{ $data[0]->nama }}</h5>
+            <p class="card-text" id="deskripsi-wisata-detail"></p>
+            <!-- <textarea class="card-text" id="deskripsi-wisata-detail"></textarea> -->
           </div>
         </div>
       </div>
@@ -22,23 +24,26 @@
       <!-- Milestone -->
       <div class="col-3">
         <div class="milestone text-center">
-          <div class="milestone_icon"><img src="{{ asset('user/images/mountain.svg') }}" alt=""></div>
-          <div class="milestone_counter" data-end-value="110">0</div>
+          <div class="milestone_icon"><img class="fa fa-car fa-5x" alt=""></div>
+          <div class="milestone_counter" id="jumlah-parkir">0</div>
           <div class="milestone_text">Jumlah Parkir Tersedia</div>
+          <input type="hidden" name="detail-id" value="{{$data[0]->id}}">
+          <input type="hidden" name="kapasitas" value="{{$data[0]->kapasitas_parkir_mobil}}">
         </div>
       </div>
 
       <!-- Milestone -->
       <div class="col-3">
         <div class="milestone text-center">
-          <div class="milestone_icon"><img src="{{ asset('user/images/mountain.svg') }}" alt=""></div>
-          <div class="milestone_counter" data-end-value="110">0</div>
+          <div class="milestone_icon"><img class="fa fa-user fa-5x" src="" alt=""></div>
+          <div class="milestone_counter" id="pengunjung">0</div>
           <div class="milestone_text">Total Pengunjung Hari Ini</div>
         </div>
       </div>
       <div class="col-3">
         <div class="card-cuaca">
-                <h2 class="nama-wisata">Jatim Park 1</h2>
+          <input type="hidden" name="lokasi" value="{{$data[0]->lokasi}}">
+                <h2 class="nama-wisata">{{$data[0]->nama}}</h2>
                 <h3 class="header-cuaca">Cloudy<span>Wind 10km/h <span class="dot">•</span> Precip 0%</span></h3>
                 <h1 class="suhu"></h1>
                 <img class="sky" src="http://openweathermap.org/img/w/10d.png">
@@ -73,7 +78,7 @@
       <div class="col">
         <!--Google map-->
         <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
-          <iframe src="https://maps.google.com/maps?q=Jatim Park I, Jl. Dewi Sartika Atas, Sisir, Kec. Batu, Kota Batu, Jawa Timur 65314&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+          <iframe src="https://maps.google.com/maps?q={{$data[0]->nama}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
             style="border:0" allowfullscreen></iframe>
         </div>
 
@@ -100,4 +105,7 @@
 <script src="{{ asset('user/js/about.js') }}"></script>
 <!-- ajax -->
 <script src="{{ asset('user/js/detail.js') }}"></script>
+<!-- <script type="text/javascript">
+  tinymce.get('deskripsi-wisata-detail').setContent('{{$data[0]->deskripsi}}');
+</script> -->
 @endsection

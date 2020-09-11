@@ -13,6 +13,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
+      @yield('firebase')
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="index.html">Start Bootstrap</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
             ><!-- Navbar Search-->
@@ -45,7 +46,7 @@
                             <a class="nav-link" href="{{ route('kuliner') }}"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Kuliner</a>
                             <a class="nav-link" href="{{ route('wisata') }}"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Wisata</a>
                             <a class="nav-link" href="{{ route('akomodasi') }}"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Akomodasi</a>
-                            <a class="nav-link" href="artikel_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Artikel</a>
+                            <a class="nav-link" href="{{ route('artikel') }}"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Artikel</a>
                             <a class="nav-link" href="galeri_admin.php"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Galeri</a>
                         </div>
                     </div>
