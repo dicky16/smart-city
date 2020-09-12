@@ -21,6 +21,9 @@ Route::prefix('wisata')->group(function () {
   Route::get('detail/{id}', 'User\UserWisataController@index');
   // Route::get('detail-get/{id}', 'User\UserWisataController@show');
 });
+Route::prefix('kuliner')->group(function () {
+  Route::get('detail/{id}', 'User\UserKulinerController@index');
+});
 Route::get('about', 'User\HomeController@about');
 
 //logout
