@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Travello</title>
+<title>Travelling Malang</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Travello template project">
@@ -54,17 +54,19 @@
 				<div class="col">
 					<div class="header_content d-flex flex-row align-items-center justify-content-start">
 						<div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
-							<div class="logo"><a href="index.html">Travello</a></div>
+							<div class="logo"><a href="{{ url('/') }}">Travelling Malang</a></div>
 							<nav class="main_nav">
 								<ul class="d-flex flex-row align-items-start justify-content-start">
 									<li class="active"><a href="{{ url('/') }}">Home</a></li>
 									<li><a href="about.html">About us</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="news.html">News</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="#destinations">Wisata</a></li>
+									<li><a href="#artikel">News</a></li>
+                  <li><a href="#kuliner">Kuliner</a></li>
+                  <li><a href="#akomodasi">Akomodasi</a></li>
+									<li><a href="{{ route('contact')}}">Contact</a></li>
 								</ul>
 							</nav>
-							<div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
+							<div class="header_phone ml-auto">Call US: 085674374736</div>
 
 							<!-- Hamburger -->
 
@@ -248,8 +250,8 @@
 								<div class="footer_contact_title">give us a call</div>
 								<div class="footer_contact_list">
 									<ul>
-										<li>Office Landline: +44 5567 32 664 567</li>
-										<li>Mobile: +44 5567 89 3322 332</li>
+										<li>Office: +62887865</li>
+										<li>Mobile: 62887865</li>
 									</ul>
 								</div>
 							</div>
@@ -262,7 +264,7 @@
 								<div class="footer_contact_title">come & drop by</div>
 								<div class="footer_contact_list">
 									<ul style="max-width:190px">
-										<li>4124 Barnes Street, Sanford, FL 32771</li>
+										<li>Malang</li>
 									</ul>
 								</div>
 							</div>
@@ -275,8 +277,7 @@
 								<div class="footer_contact_title">send us a message</div>
 								<div class="footer_contact_list">
 									<ul>
-										<li>youremail@gmail.com</li>
-										<li>Office@yourbusinessname.com</li>
+										<li>malangtravelling@gmail.com</li>
 									</ul>
 								</div>
 							</div>
@@ -287,7 +288,7 @@
 			</div>
 		</div>
 		<div class="col text-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Malang Travelling
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </div>
 	</footer>
 </div>
@@ -301,10 +302,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{ asset('user/plugins/easing/easing.js') }}"></script>
 <script src="{{ asset('user/plugins/parallax-js-master/parallax.min.js') }}"></script>
 <script src="{{ asset('user/js/custom.js') }}"></script>
-<script
-      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
-      data-auto-a11y="true"
-    ></script>
+<script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+<script src="{{ asset('tinymcs.js') }}"></script>
+<script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js" data-auto-a11y="true"></script>
 @yield('js')
 </body>
 </html>

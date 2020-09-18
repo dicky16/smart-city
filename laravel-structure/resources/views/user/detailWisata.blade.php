@@ -40,6 +40,7 @@
           <div class="milestone_text">Total Pengunjung Hari Ini</div>
         </div>
       </div>
+
       <div class="col-3">
         <div class="card-cuaca">
           <input type="hidden" name="lokasi" value="{{$data[0]->lokasi}}">
@@ -73,7 +74,18 @@
           </div>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col">
+        <div class="col-3">
+          <div class="milestone text-center">
+            <div class="milestone_icon"><img class="fa fa-stopwatch fa-5x" src="" alt=""></div>
+            <div class="milestone_counter" id="">Jam Buka</div>
+            <div class="milestone_text">{{ $data[0]->jam_buka }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
     <div class="row mb-2">
       <div class="col">
         <!--Google map-->

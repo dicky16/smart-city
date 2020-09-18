@@ -16,15 +16,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'User\HomeController@index');
 Route::get('tes', 'User\HomeController@tes');
 
+Route::prefix('akomodasi')->group(function () {
+  Route::get('get', 'User\HomeController@getAkomodasi');
+});
+
+Route::prefix('artikel')->group(function () {
+  Route::get('get', 'User\HomeController@getArtikel');
+});
+
 Route::get('detail', 'User\HomeController@show');
 Route::prefix('wisata')->group(function () {
   Route::get('detail/{id}', 'User\UserWisataController@index');
-  // Route::get('detail-get/{id}', 'User\UserWisataController@show');
+  Route::get('get', 'User\HomeController@getWisata');
 });
 Route::prefix('kuliner')->group(function () {
   Route::get('detail/{id}', 'User\UserKulinerController@index');
+  Route::get('get', 'User\HomeController@getKuliner');
 });
 Route::get('about', 'User\HomeController@about');
+Route::get('contact', 'User\HomeController@contact')->name('contact');
 
 //logout
 Route::get('logout', 'Admin\AdminPageController@logout')->name('logout');

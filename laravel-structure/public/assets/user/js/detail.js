@@ -10,7 +10,18 @@ $(document).ready(function() {
     // loadWeather(-7.884492, 112.524885);
     loadPengunjung();
     loadJumlahParkir();
+    loadDeskripsiWisata();
+
     // loadJumlahParkir1();
+    var id = $('input[name=detail-id]').val();
+    var refKeluar = firebase.database().ref('/wisata/'+ id +'/mobil_keluar');
+      refKeluar.on("value", function(snapshot) {
+      keluar = snapshot.val();
+      loadJumlahParkir();
+      // console.log(data);
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
 
     function loadWeather(lat, lon)
     {
@@ -68,6 +79,7 @@ $(document).ready(function() {
         var refKeluar = firebase.database().ref('/wisata/'+ id +'/mobil_keluar');
           refKeluar.on("value", function(snapshot) {
           keluar = snapshot.val();
+
           // console.log(data);
         }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
@@ -124,9 +136,17 @@ $(document).ready(function() {
 
     }
 
-    $('body').on('submit', '#form-tambah-wisata', function(e) {
-      e.preventDefault();
-
-    });
+    function loadDeskripsiWisata() {
+			var host = window.location.origin;
+			$.ajax({
+				type: 'GET',
+				url: '/wisata/get',
+				contentType: false,
+				processData: false,
+				success: function(data) {
+          $("#deskripsi-wisata-detail").append(data.data[0].deskripsi);
+        }
+      });
+    }
 
 });

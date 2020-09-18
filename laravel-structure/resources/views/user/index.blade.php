@@ -95,68 +95,7 @@
 
 <!-- Testimonials -->
 
-<div class="testimonials" id="testimonials">
-	<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{{ asset('user/images/testimonials.jpg') }}" data-speed="0.8"></div>
-	<div class="container">
-		<div class="row">
-			<div class="col text-center">
-				<div class="section_subtitle">simply amazing places</div>
-				<div class="section_title"><h2>Testimonials</h2></div>
-			</div>
-		</div>
-		<div class="row testimonials_row">
-			<div class="col">
 
-				<!-- Testimonials Slider -->
-				<div class="testimonials_slider_container">
-					<div class="owl-carousel owl-theme testimonials_slider">
-
-						<!-- Slide -->
-						<div class="owl-item text-center">
-							<div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur quis vehicula odio.</div>
-							<div class="testimonial_author">
-								<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
-									<div>john turner,</div>
-									<div>client</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slide -->
-						<div class="owl-item text-center">
-							<div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur quis vehicula odio.</div>
-							<div class="testimonial_author">
-								<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
-									<div>john turner,</div>
-									<div>client</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slide -->
-						<div class="owl-item text-center">
-							<div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur quis vehicula odio.</div>
-							<div class="testimonial_author">
-								<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
-									<div>john turner,</div>
-									<div>client</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="test_nav">
-		<ul class="d-flex flex-column align-items-end justify-content-end">
-			<li><a href="#">City Breaks Clients<span>01</span></a></li>
-			<li><a href="#">Cruises Clients<span>02</span></a></li>
-			<li><a href="#">All Inclusive Clients<span>03</span></a></li>
-		</ul>
-	</div>
-</div>
 
 <!-- News -->
 
@@ -164,141 +103,33 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<div class="news_container">
+				<div class="news_container" id="akomodasi">
 					<h4>Akomodasi</h4>
 					<br>
-					<!-- News Post -->
-					<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-						<div class="news_post_image"><img src="{{ asset('user/images/news_1.jpg') }}" alt=""></div>
-						<div class="news_post_content">
-							<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-								<div>02</div>
-								<div>june</div>
-							</div>
-							<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
-							<div class="news_post_category">
-								<ul>
-									<li><a href="#">lifestyle & travel</a></li>
-								</ul>
-							</div>
-							<div class="news_post_text">
-								<p>Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo. Vivamus massa.Tempor massa et laoreet.</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- News Post -->
-					<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-						<div class="news_post_image"><img src="{{ asset('user/images/news_2.jpg') }}" alt=""></div>
-						<div class="news_post_content">
-							<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-								<div>01</div>
-								<div>june</div>
-							</div>
-							<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
-							<div class="news_post_category">
-								<ul>
-									<li><a href="#">lifestyle & travel</a></li>
-								</ul>
-							</div>
-							<div class="news_post_text">
-								<p>Tempor massa et laoreet malesuada. Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo.</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- News Post -->
-					<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-						<div class="news_post_image"><img src="{{ asset('user/images/news_3.jpg') }}" alt=""></div>
-						<div class="news_post_content">
-							<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-								<div>29</div>
-								<div>may</div>
-							</div>
-							<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
-							<div class="news_post_category">
-								<ul>
-									<li><a href="#">lifestyle & travel</a></li>
-								</ul>
-							</div>
-							<div class="news_post_text">
-								<p>Vivamus massa.Tempor massa et laoreet malesuada. Aliquam nulla nisl, accumsan sit amet mattis.</p>
-							</div>
-						</div>
-					</div>
-
 				</div>
 			</div>
 
 			<!-- side ke dua artikel -->
 			<div class="col">
-				<div class="news_container">
+				<div class="news_container" id="artikel">
 					<h4>Artikel</h4>
 					<br>
-					<!-- News Post -->
-					<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-						<div class="news_post_image"><img src="{{ asset('user/images/news_1.jpg') }}" alt=""></div>
-						<div class="news_post_content">
-							<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-								<div>02</div>
-								<div>june</div>
-							</div>
-							<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
-							<div class="news_post_category">
-								<ul>
-									<li><a href="#">lifestyle & travel</a></li>
-								</ul>
-							</div>
-							<div class="news_post_text">
-								<p>Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo. Vivamus massa.Tempor massa et laoreet.</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- News Post -->
-					<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-						<div class="news_post_image"><img src="{{ asset('user/images/news_2.jpg') }}" alt=""></div>
-						<div class="news_post_content">
-							<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-								<div>01</div>
-								<div>june</div>
-							</div>
-							<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
-							<div class="news_post_category">
-								<ul>
-									<li><a href="#">lifestyle & travel</a></li>
-								</ul>
-							</div>
-							<div class="news_post_text">
-								<p>Tempor massa et laoreet malesuada. Pellentesque sit amet elementum ccumsan sit amet mattis eget, tristique at leo.</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- News Post -->
-					<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-						<div class="news_post_image"><img src="{{ asset('user/images/news_3.jpg') }}" alt=""></div>
-						<div class="news_post_content">
-							<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-								<div>29</div>
-								<div>may</div>
-							</div>
-							<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
-							<div class="news_post_category">
-								<ul>
-									<li><a href="#">lifestyle & travel</a></li>
-								</ul>
-							</div>
-							<div class="news_post_text">
-								<p>Vivamus massa.Tempor massa et laoreet malesuada. Aliquam nulla nisl, accumsan sit amet mattis.</p>
-							</div>
-						</div>
-					</div>
-
 				</div>
 			</div>
 
 		</div>
+		<br><br><br>
+		<div class="row">
+			<div class="col-xl-8">
+				<div class="news_container" id="kuliner">
+					<h4>Kuliner</h4>
+					<br>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+@endsection
+@section('js')
+<script src="{{ asset('user/js/home.js') }}" charset="utf-8"></script>
 @endsection
