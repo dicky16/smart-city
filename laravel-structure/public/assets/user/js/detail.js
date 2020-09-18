@@ -25,7 +25,7 @@ $(document).ready(function() {
 
     function loadWeather(lat, lon)
     {
-      var key = 'd440bdea7a1217947fd4db75d173538a';
+      var key = 'key';
       fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+ lat +'&lon='+ lon +'&appid='+ key)
       .then(function(resp) { return resp.json() }) // Convert data to json
       .then(function(data) {
